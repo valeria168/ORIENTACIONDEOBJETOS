@@ -1,0 +1,7 @@
+estudiante = input ("Escriba el nombre de un estudiante: ")
+a = float(input("Ingrese una calificaion: "))
+b = float(input("Ingrese una segunda calificacion: "))
+c = float (input("Ingrese una tercera calificacion: "))
+Suma = float (a + b + c)
+Promedio = float ( Suma / 3)
+print ("El promedio de notas del estudiante ",estudiante, "es de: ", Promedio)
