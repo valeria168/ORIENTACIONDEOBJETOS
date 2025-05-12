@@ -1,5 +1,8 @@
+from ejercicio5 import Usuario
+
 class libro():
     estado = "disponible"
+    apoderado = "sin apoderado"
 
     def __init__(self, titulo, autor, precio):
         self.titulo = titulo
@@ -9,6 +12,7 @@ class libro():
     def prestar(self):
         if self.estado == "disponible":
             self.estado = "prestado"
+            self.apoderado = usuario1.getnombre()
             print(f"El libro '{self.titulo}' ha sido prestado con exito.")
         else:
             print(f"El libro '{self.titulo}' no está disponible por el momento")
@@ -16,6 +20,7 @@ class libro():
     def devolucion(self):
         if self.estado == "prestado":
             self.estado = "disponible"
+            self.apoderado = "sin apoderado"
             print(f"El libro '{self.titulo}' ha sido devuelto con exito.")
         else:
             print(f"El libro '{self.titulo}' no ha sido prestado, no se puede devolver.")
@@ -25,6 +30,9 @@ class libro():
     
     def estadolibro(self):
         return f" {self.estado}"
+    
+    def getapoderado(self):
+        return self.apoderado
 
 
 class biblioteca():
@@ -34,7 +42,7 @@ class biblioteca():
     def verlibros(self):
         print("\n### LIBROS ACTUALES ###\n")
         for indice, libro in enumerate(self.inventario):
-            print(f"{libro.estadolibro()} {indice+1}. {libro}")
+            print(f"{libro.estadolibro()} {indice+1}. {libro} PRESTADO A: {libro.getapoderado()} ")
 
 
     def agregarlibro(self, titulo, autor, precio ):
@@ -57,15 +65,14 @@ class biblioteca():
                 
         
 
-"""libro1 = libro("El Quijote", "Cervantes", 20)
-libro2 = libro("Cien años de soledad", "Gabriel García Márquez", 25)
-libro3 = libro("1984", "George Orwell", 15)"""
-
 biblioteca1 =  biblioteca()
 biblioteca1.agregarlibro("El Quijote", "Cervantes", 20)
 biblioteca1.agregarlibro("Cien años de soledad", "Gabriel García Márquez", 25)
 biblioteca1.agregarlibro("1984", "George Orwell", 15)
 
+usuario1 = Usuario(
+    input("digita tu nombre porfavor: "), input("digita tu cedula: ")
+)
 
 while True:
     print("\n####  Bienvenidos a la bibilioteca de ENCA  #### \n¿Que deseas hacer hoy? \n" \
@@ -74,7 +81,7 @@ while True:
     "\n3. Devolver un llibro" \
     "\n4. Salir")
     ""
-    seleccion=int(input("Escribe el indice de tu seleccion: "))
+    seleccion=int(input(f"Escribe el indice de tu seleccion {usuario1.getnombre()}: "))
     if seleccion == 1:
         biblioteca1.verlibros()
     if seleccion == 2:
