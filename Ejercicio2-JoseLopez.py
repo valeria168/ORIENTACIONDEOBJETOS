@@ -8,18 +8,20 @@ class computer:
            
     def encender(self):
         self.encendida = True
-        print(f"{self.marca} {self.modelo} encendido el equipo.")
+        if self.encendida:
+            print(f"{self.marca} {self.modelo} encendido el equipo.")
         self.saludar()
     
     def saludar(self):
-        print(f"iniciando sesion {self.marca} {self.modelo} hola Enca24 Bienvenido.")
+        if self.encendida:
+            print(f"iniciando sesion {self.marca} {self.modelo} hola Enca24 Bienvenido.")
+        else:
+            print(f"El equipo se encuentra Apagado, Porfavor Enciendalo.")
        
     def apagar(self):
        if self.encendida:
           self.encendida = False
           print(f"{self.marca} {self.modelo} se ha apagado el equipo.")
-       else:
-          print(f"{self.marca} {self.modelo} se apago el equipo.")
         
     def actualizar(self, nuevo_sistema_operativo):
        if self.encendida:
@@ -27,7 +29,7 @@ class computer:
           self.sistema_operativo = nuevo_sistema_operativo
           print("actualizacion finalizada.")
        else:
-          print(f"no se puede actualizar{self.marca} {self.modelo} por que esta apagado.")
+          print(f"no se puede actualizar {self.marca} {self.modelo} por que esta apagado.")
       
     def estado(self):
        estado = "encendida" if self.encendida else "apagada"
@@ -39,6 +41,5 @@ pc1 = computer("hp", "desktop", "windows 11 pro")
 pc1.estado()
 pc1.encender()
 pc1.actualizar("windows 11")
-pc1.estado()
 pc1.apagar()
 pc1.estado()
