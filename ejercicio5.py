@@ -6,3 +6,4 @@ class Usuario():
     
     def getnombre(self):
         return self.nombre
+#fin del algoritmo
